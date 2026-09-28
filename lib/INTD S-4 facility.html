@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⏣ MATRIX · S-4 FACILITY · MODELS & DIAGRAMS · DEEPER INQUIRY</title>
+  <style>
+    /* ===== MATRIX THEME · SLEEK EDITION · NO BLACK TEXT ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color: #c0e0c0;
+    }
+
+    body {
+      background: #050805;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(0, 30, 0, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(0, 50, 10, 0.3) 0%, transparent 40%),
+        linear-gradient(180deg, #030503 0%, #080d08 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      padding: 1.8rem;
+      perspective: 1500px;
+    }
+
+    .dossier-container {
+      max-width: 1400px;
+      width: 100%;
+      background: rgba(10, 15, 10, 0.95);
+      border: 1px solid rgba(40, 80, 40, 0.7);
+      box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(0, 200, 0, 0.1),
+        inset 0 0 50px rgba(0, 30, 0, 0.6);
+      border-radius: 24px;
+      padding: 2.2rem 2rem 1.8rem;
+      position: relative;
+      transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+      transform: rotateX(1deg);
+      backdrop-filter: blur(10px);
+    }
+
+    .dossier-container:hover {
+      transform: rotateX(0deg) translateY(-5px);
+      box-shadow: 
+        0 40px 100px rgba(0, 0, 0, 0.95),
+        0 0 80px rgba(0, 255, 0, 0.15),
+        inset 0 0 60px rgba(0, 40, 0, 0.7);
+    }
+
+    .dossier-container::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: repeating-linear-gradient(0deg, 
+        rgba(0, 255, 0, 0.015) 0px, 
+        rgba(0, 255, 0, 0.015) 2px, 
+        transparent 2px, 
+        transparent 6px);
+      pointer-events: none;
+      border-radius: 24px;
+      z-index: 2;
+      animation: scanlineShift 10s linear infinite;
+    }
+
+    @keyframes scanlineShift {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 60px; }
+    }
+
+    .dossier-container::after {
+      content: '⧩ DEEPER INQUIRY · S-4 FACILITY MODELS ⧩';
+      position: absolute;
+      bottom: 14px;
+      right: 24px;
+      font-size: 0.6rem;
+      letter-spacing: 2.5px;
+      color: #6ab86a !important;
+      opacity: 0.7;
+      background: rgba(8, 15, 8, 0.95);
+      padding: 0.2rem 1rem;
+      border-radius: 20px;
+      z-index: 3;
+      border: 1px solid rgba(40, 80, 40, 0.5);
+      text-shadow: 0 0 8px rgba(0, 200, 0, 0.6);
+    }
+
+    /* ===== HEADER ===== */
+    .file-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid rgba(40, 80, 40, 0.6);
+      padding-bottom: 0.8rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      transform: translateZ(30px);
+    }
+
+    .file-title {
+      font-size: 2rem;
+      font-weight: 500;
+      color: #d0f0d0 !important;
+      text-shadow: 
+        0 0 20px rgba(0, 200, 50, 0.7),
+        0 0 50px rgba(0, 150, 0, 0.4),
+        0 8px 20px rgba(0, 0, 0, 0.9);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      line-height: 1.2;
+      transform: translateZ(20px);
+    }
+    .file-title small {
+      font-size: 0.85rem;
+      color: #90e090 !important;
+      text-shadow: 0 0 10px rgba(0, 200, 0, 0.6);
+      letter-spacing: 2px;
+      margin-left: 12px;
+      display: inline-block;
+      font-weight: 400;
+      background: rgba(0, 20, 0, 0.5);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+    }
+
+    .file-badge {
+      color: #a0e8a0 !important;
+      border: 1px solid rgba(50, 100, 50, 0.7);
+      padding: 0.25rem 1.4rem;
+      border-radius: 40px;
+      background: rgba(10, 20, 10, 0.9);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+      text-shadow: 0 0 8px rgba(0, 180, 0, 0.5);
+      transform: translateZ(40px);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .content-wrapper {
+      transform-style: preserve-3d;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .panel {
+      background: rgba(13, 20, 13, 0.9);
+      border: 1px solid rgba(40, 80, 40, 0.6);
+      border-radius: 18px;
+      padding: 1.5rem 1.6rem;
+      box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.7),
+        0 0 25px rgba(0, 150, 0, 0.1),
+        inset 0 0 30px rgba(0, 25, 0, 0.5);
+      transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      backdrop-filter: blur(8px);
+      transform: translateZ(20px);
+      position: relative;
+    }
+
+    .panel:hover {
+      border-color: rgba(80, 200, 80, 0.8);
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(0, 255, 0, 0.2),
+        inset 0 0 40px rgba(0, 40, 0, 0.6);
+      transform: translateZ(40px) translateY(-3px);
+    }
+
+    .panel-title {
+      color: #d0f8d0 !important;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(0, 200, 50, 0.7);
+      border-bottom: 1px solid rgba(50, 100, 50, 0.5);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+    }
+
+    .panel-title .icon {
+      font-size: 1.4rem;
+      opacity: 0.9;
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+      color: #b0e8b0 !important;
+    }
+
+    /* ===== IMAGE GRID - 5 frames ===== */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 1.2rem 0 0.4rem;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .image-card {
+      background: rgba(15, 25, 15, 0.9);
+      border: 1px solid rgba(40, 80, 40, 0.7);
+      border-radius: 20px;
+      padding: 0.9rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-card:hover {
+      border-color: #80d080;
+      box-shadow: 0 0 40px rgba(0, 200, 0, 0.3);
+      transform: translateY(-5px) scale(1.01);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 14px;
+      background: #0a120a;
+      border: 1px solid #2a4a2a;
+      box-shadow: inset 0 0 30px rgba(0, 40, 0, 0.6);
+      transition: 0.3s ease;
+    }
+
+    .image-card img:hover {
+      filter: brightness(1.15) drop-shadow(0 0 20px rgba(0, 255, 0, 0.3));
+      border-color: #60d060;
+    }
+
+    .image-label {
+      margin-top: 0.6rem;
+      font-size: 0.7rem;
+      color: #90d090 !important;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 10px rgba(0, 200, 0, 0.5);
+      background: rgba(10, 20, 10, 0.8);
+      padding: 0.2rem 1.2rem;
+      border-radius: 30px;
+      border: 1px solid #2a4a2a;
+      font-weight: 500;
+    }
+
+    .analysis-block {
+      background: rgba(15, 30, 15, 0.9);
+      border-left: 3px solid #60d060;
+      padding: 1rem 1.2rem;
+      margin: 0.8rem 0;
+      border-radius: 0 12px 12px 0;
+      color: #d8f8d8 !important;
+      box-shadow: inset 0 0 20px rgba(0, 40, 0, 0.4);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .coord-block {
+      background: rgba(10, 25, 10, 0.95);
+      border: 1px solid #60a060;
+      border-radius: 16px;
+      padding: 1rem 1.4rem;
+      margin: 0.8rem 0;
+      display: inline-block;
+      box-shadow: 0 0 30px rgba(0, 150, 0, 0.2);
+    }
+
+    .coord-block .coord-line {
+      color: #b0f0b0 !important;
+      font-size: 1rem;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 12px rgba(0, 200, 0, 0.5);
+    }
+
+    .coord-block .coord-line small {
+      color: #80c080 !important;
+      font-size: 0.8rem;
+      margin-left: 0.8rem;
+    }
+
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+
+    .code-tag {
+      color: #90e090 !important;
+      background: rgba(10, 20, 10, 0.9);
+      padding: 0.15rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.65rem;
+      border: 1px solid rgba(40, 80, 40, 0.7);
+      display: inline-block;
+      letter-spacing: 1px;
+      text-shadow: 0 0 6px rgba(0, 200, 0, 0.5);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .personnel-card {
+      background: rgba(15, 25, 15, 0.9);
+      border: 1px solid rgba(40, 80, 40, 0.7);
+      border-radius: 16px;
+      padding: 1rem;
+      margin: 0.8rem 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .personnel-card .name {
+      color: #c0f0c0 !important;
+      font-size: 1rem;
+      font-weight: 500;
+      text-shadow: 0 0 8px rgba(0, 200, 0, 0.5);
+      letter-spacing: 1px;
+    }
+
+    .personnel-card .role {
+      color: #80d080 !important;
+      font-size: 0.75rem;
+      margin-top: 0.2rem;
+      text-shadow: 0 0 6px rgba(0, 180, 0, 0.5);
+    }
+
+    .personnel-card .detail {
+      color: #a0e0a0 !important;
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+      line-height: 1.6;
+      text-shadow: 0 0 6px rgba(0, 150, 0, 0.4);
+    }
+
+    .verification-status {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #b8f0b8 !important;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px rgba(0, 200, 0, 0.6);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #60d060;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+      animation: pulse-dot 2s infinite;
+    }
+
+    .status-dot.warning {
+      background: #d0c060;
+      box-shadow: 0 0 10px rgba(255, 200, 0, 0.8);
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    /* ===== FOOTER ===== */
+    .meta-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(40, 70, 40, 0.5);
+      padding-top: 1.2rem;
+      margin-top: 0.8rem;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.7rem;
+      color: #80d080 !important;
+      letter-spacing: 2px;
+      transform: translateZ(20px);
+    }
+
+    .meta-footer span {
+      background: rgba(10, 20, 10, 0.9);
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      border: 1px solid rgba(40, 80, 40, 0.6);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+      text-shadow: 0 0 6px rgba(0, 180, 0, 0.5);
+      transition: all 0.3s ease;
+      color: #b8e8b8 !important;
+    }
+
+    .meta-footer span:hover {
+      border-color: rgba(80, 200, 80, 0.8);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 200, 0, 0.3);
+    }
+
+    .meta-footer .blink {
+      animation: blink 2.5s infinite;
+    }
+    @keyframes blink {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+        max-width: 100%;
+      }
+    }
+    @media (max-width: 550px) {
+      .image-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 400px;
+      }
+      .image-card img {
+        aspect-ratio: 4 / 3;
+      }
+      .dossier-container { 
+        padding: 1.2rem 1rem; 
+        border-radius: 18px;
+      }
+      .file-title { 
+        font-size: 1.4rem; 
+        letter-spacing: 2px; 
+      }
+      .file-title small { 
+        font-size: 0.7rem; 
+        margin-left: 4px; 
+        display: block; 
+      }
+      .panel { 
+        padding: 1rem; 
+        border-radius: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="dossier-container">
+
+  <!-- HEADER -->
+  <div class="file-header">
+    <div class="file-title">
+      ⬛ S-4 FACILITY · MODELS & DIAGRAMS
+      <small>◈ DEEPER INQUIRY · PAPOOSE LAKE SECTOR</small>
+    </div>
+    <div class="file-badge">⏣ ONGOING INVESTIGATION · 2026</div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="content-wrapper">
+
+    <!-- ===== 5 IMAGES SECTION ===== -->
+    <div class="panel">
+      <div class="panel-title"><span class="icon">🛸</span> S-4 FACILITY · MODELS & DIAGRAMS</div>
+      <div class="image-grid">
+        <!-- IMAGE 1 -->
+        <div class="image-card">
+          <img src="data:image/png;base64,REPLACE_WITH_BASE64_1" alt="S-4 exterior hangar bays">
+          <span class="image-label">FRAME 01 · EXTERIOR BAYS</span>
+        </div>
+        <!-- IMAGE 2 -->
+        <div class="image-card">
+          <img src="data:image/png;base64,REPLACE_WITH_BASE64_2" alt="S-4 floor layout level 1">
+          <span class="image-label">FRAME 02 · LEVEL 1 LAYOUT</span>
+        </div>
+        <!-- IMAGE 3 -->
+        <div class="image-card">
+          <img src="data:image/png;base64,REPLACE_WITH_BASE64_3" alt="Sport Model craft diagram">
+          <span class="image-label">FRAME 03 · SPORT MODEL</span>
+        </div>
+        <!-- IMAGE 4 -->
+        <div class="image-card">
+          <img src="data:image/png;base64,REPLACE_WITH_BASE64_4" alt="Clean Sphere and Looking Glass">
+          <span class="image-label">FRAME 04 · CLEAN SPHERE</span>
+        </div>
+        <!-- IMAGE 5 -->
+        <div class="image-card">
+          <img src="data:image/png;base64,REPLACE_WITH_BASE64_5" alt="Sub-floor layout and PINS device">
+          <span class="image-label">FRAME 05 · SUB-FLOOR & PINS</span>
+        </div>
+      </div>
+      <div class="analysis-block" style="margin-top: 0.8rem;">
+        <span>⏣</span> <strong>Documentation integrity:</strong> Five frames depicting S-4 facility models, craft diagrams, and key equipment based on Dr. Dan Burisch's testimony. Replace placeholders with actual Base64 encoded images.
+      </div>
+      <div class="tag-container">
+        <span class="code-tag">5 FRAMES</span>
+        <span class="code-tag">BASE64 ENCODED</span>
+        <span class="code-tag">S-4 DIAGRAMS</span>
+        <span class="code-tag">HIGH RESOLUTION</span>
+      </div>
+    </div>
+
+    <!-- S-4 FACILITY DETAILS -->
+    <div class="panel">
+      <div class="panel-title"><span class="icon">🔎</span> S-4 FACILITY · PAPOOSE LAKE</div>
+      
+      <p style="color: #c8e8c8 !important; font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.8rem;">
+        <strong>S-4</strong> is a reportedly secretive installation located south of the main Area 51 complex, adjacent to <strong>Lake Papoose</strong>. The facility has nine hangar bays built into the side of the Papoose mountain range at a 60-degree angle, designed to blend with the surrounding terrain.
+      </p>
+
+      <div class="personnel-card" style="border-color: rgba(80, 200, 80, 0.9);">
+        <div class="name">Facility Specifications</div>
+        <div class="role">Nine Hangar Bays · Five Working Levels</div>
+        <div class="detail">
+          The S4 facility has nine hangar bays built into the side of the Papoose mountain range at an angle of 60 degrees. The exterior texture of the bay doors were specifically designed to blend in with the surrounding background. A small tarmac is located immediately in front of the hangar bays to facilitate the removal of different craft. A unique walkway consisting of parallel blue and red lines leads directly to the front entrance. Dan was told to stay within the blue lines, and never to break the boundaries of the exterior red lines. Security guards along this oppressive walkway had "shoot to kill" orders to neutralize anyone who breached the red lines.
+        </div>
+      </div>
+
+      <div class="personnel-card" style="border-color: rgba(200, 180, 60, 0.8);">
+        <div class="name">The Clean Sphere</div>
+        <div class="role">Biological Containment System</div>
+        <div class="detail">
+          After the P-52 J-Rod had arrived at Groom Lake, Majestic arranged for him to be in a more suitable environmental containment condition. He was then transported via ground team to the Papoose Lake facility (S-4) to be put into the offensive biological warfare animal testing system. This containment testing system became known as "The Clean Sphere". Having taken over that area for containment of the J-Rod, Majestic arranged for the offensive biological warfare personnel to be moved to Camp Detrick. At this point, the power-brokers quickly arranged for funding so that those in charge of the warfare program would not complain about the quick change of facilities. Camp Detrick and enhanced funding can be tracked to that year.
+        </div>
+      </div>
+
+      <div class="personnel-card" style="border-color: rgba(60, 150, 200, 0.8);">
+        <div class="name">Project Aquarius</div>
+        <div class="role">P-52 J-Rod · Orion Connection</div>
+        <div class="detail">
+          The P-52 J-Rod identified himself as coming from the direction of the Aquarius system. The Air Force's control over what then became Project Aquarius was quickly wrested away from the Air Force by the Navy because the naval members of Majestic had surmised in reports that there should be people beyond the P-45 time frame, whereas the Air Force had concluded, after listening to lies from the P-45's, that there could not be anybody beyond their time frame.
+        </div>
+      </div>
+
+      <div class="analysis-block" style="border-left-color: #d0c060;">
+        <span>◆</span> <strong>Verification status:</strong> Information derived from Dr. Dan Burisch's testimony and supporting documentation. Subject of ongoing investigation and verification.
+      </div>
+
+      <div class="tag-container">
+        <span class="code-tag">S-4 FACILITY</span>
+        <span class="code-tag">PAPOOSE LAKE</span>
+        <span class="code-tag">PROJECT AQUARIUS</span>
+        <span class="code-tag">P-52 J-ROD</span>
+        <span class="code-tag">CLEAN SPHERE</span>
+      </div>
+    </div>
+
+    <!-- INVESTIGATIVE SUMMARY -->
+    <div class="panel" style="border-color: rgba(50, 110, 50, 0.8);">
+      <div class="panel-title"><span class="icon">⏣</span> INVESTIGATIVE SUMMARY · CURRENT STATUS</div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.8rem 0;">
+        <div style="background: rgba(15, 25, 15, 0.9); border: 1px solid rgba(40, 80, 40, 0.7); border-radius: 12px; padding: 0.8rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);">
+          <span style="color: #80d080 !important;">◆</span> <strong>Location:</strong> Lake Papoose, NV (12 miles south of Area 51)
+        </div>
+        <div style="background: rgba(15, 25, 15, 0.9); border: 1px solid rgba(40, 80, 40, 0.7); border-radius: 12px; padding: 0.8rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);">
+          <span style="color: #80d080 !important;">◆</span> <strong>Key Witness:</strong> Dr. Dan Burisch (Microbiologist)
+        </div>
+        <div style="background: rgba(15, 25, 15, 0.9); border: 1px solid rgba(40, 80, 40, 0.7); border-radius: 12px; padding: 0.8rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);">
+          <span style="color: #d0c060 !important;">◆</span> <strong>Notable Craft:</strong> P-45 Sport Model, P-24 Roswell, P-52 Orion
+        </div>
+        <div style="background: rgba(15, 25, 15, 0.9); border: 1px solid rgba(40, 80, 40, 0.7); border-radius: 12px; padding: 0.8rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);">
+          <span style="color: #d0c060 !important;">◆</span> <strong>Official Status:</strong> Unacknowledged · Classified
+        </div>
+      </div>
+
+      <div class="verification-status">
+        <span class="status-indicator">
+          <span class="status-dot warning"></span>
+          ACTIVE INVESTIGATION · UNRESOLVED ELEMENTS
+        </span>
+      </div>
+    </div>
+
+    <!-- COORDINATES REFERENCE -->
+    <div class="panel">
+      <div class="panel-title"><span class="icon">📍</span> GEOLOCATION · PAPOOSE LAKE SECTOR</div>
+      <div class="coord-block" style="width: 100%; text-align: center; border-color: #60a060;">
+        <div class="coord-line" style="font-size: 1.3rem;">
+          <span style="color: #d0ffd0 !important;">37°14′0″N</span> 
+          <span style="color: #b0e0b0 !important;">115°48′30″W</span>
+        </div>
+        <div class="coord-line" style="font-size: 1rem; color: #90d090 !important;">
+          Decimal: 37.23333, -115.80833
+        </div>
+        <div class="coord-line" style="font-size: 0.8rem; color: #70a070 !important; margin-top: 0.3rem; border-top: 1px solid #2a4a2a; padding-top: 0.5rem;">
+          PAPOOSE LAKE · S-4 SECTOR · RESTRICTED AIRSPACE
+        </div>
+      </div>
+      <div class="tag-container" style="justify-content: center;">
+        <span class="code-tag">37.23333, -115.80833</span>
+        <span class="code-tag">SAT IMAGERY TARGET</span>
+        <span class="code-tag">NO-FLY ZONE</span>
+        <span class="code-tag">S-4 FACILITY</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="meta-footer">
+    <span>⌨ <span style="color: #80d080 !important;">></span> sys.log("s-4 facility · models & diagrams · deeper inquiry")</span>
+    <span class="blink">⏣ INVESTIGATION ACTIVE</span>
+    <span>◈ <span style="color: #80d080 !important;">◆</span> RESTRICTED ACCESS</span>
+  </div>
+
+  <div style="height: 2px; margin-top: 1rem; background: linear-gradient(90deg, transparent, rgba(0, 200, 0, 0.5), rgba(0, 100, 0, 0.3), transparent); border-radius: 20px; opacity: 0.5; box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);"></div>
+
+</div>
+</body>
+</html>
