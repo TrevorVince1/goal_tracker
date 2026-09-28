@@ -1,0 +1,22 @@
+{
+  "project": "Hakana",
+  "platform": "ios",
+  "github": {
+    "owner": "TrevorVince1",
+    "repo": "goal_tracker"
+  },
+  "provider": "github",
+  "codemagic": {},
+  "bitrise": {},
+  "ios": {
+    "path": "ios",
+    "bundleId": "com.example.goalTracker"
+  },
+  "flutter": {
+    "version": "3.47.1",
+    "watch": {}
+  },
+  "reactNative": {},
+  "kmp": {},
+  "mobai": {}
+}
